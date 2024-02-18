@@ -9,17 +9,14 @@ from django.shortcuts import render
 from django.views.generic import View, ListView, TemplateView
 
 
-
-
-
 class HomePageView(TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["latest"] = Chart.objects.all().order_by("-date_in")[:10]
+        context["latest"] = Chart.objects.all().order_by("-date_in")[:100]
         context["count"] = Chart.objects.all().count()
-        result = context["count"]/10*100   # Например, умножение на 100
+        result = context["count"] / 10 * 100  # Например, умножение на 100
         context["result"] = result  # Добавляем результат вычислений в контекст
 
         # Получаем текущую дату и время
@@ -32,3 +29,7 @@ class HomePageView(TemplateView):
 
         return context
 
+
+def hello(request):
+
+    return render(request, "hello.html")
