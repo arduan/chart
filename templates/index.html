@@ -132,7 +132,7 @@
             <i class="ri-user-line card--icon--1g"></i>
           </div>
           <div class="card--stats">
-            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>{{ result }}%</span>
+            <span><i class="ri-bar-chart-fill card--icon stat--icon"></i>{{ result | floatformat }}%</span>
             <span><i class="ri-arrow-up-s-fill card--icon up--arrow"></i>{{ patients_last_24_hours }}</span>
             <span><i class="ri-arrow-down-s-fill card--icon down--arrow"></i>2</span>
           </div>
@@ -183,7 +183,7 @@
         <a href="#" class="docters--card">
           <div class="img--box--cover">
             <div class="img--box">
-              <img src="assets/images/pic1.webp" >
+              <img src="{% static 'images/doctor.png' %}" >
             </div>
           </div>
           <p class="scheduled">Scheduled</p>
@@ -254,8 +254,8 @@
             <td>{{ i.name}}</td>
             <td>{{ i.date_in }}</td>
             <td>{{ i.gender }}</td>
-            <td>{{ i.age }}</td>
-            <td class="pending">pending</td>
+            <td>{{ i.age }}</td>              
+            <td class="pending">{{ i.status }}</td>
             <td><span><i class="ri-edit-line edit"></i><i class="ri-delete-bin-line delete"></i></span></td>
           </tr>
            {% endfor %}

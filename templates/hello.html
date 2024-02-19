@@ -11,6 +11,10 @@
 
 {% block content %} 
 <h3>Это страница Hello!</h3>
+    {% for i in latest %}
+    	{{ i.name }}<br>
+    {% endfor %}
+    
 {% endblock %}    
           
 
