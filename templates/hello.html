@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% load static %}
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,12 +8,11 @@
 </head>
 
 <body>
+<h1>{{ object.name}}</h1>
+
 
 {% block content %} 
-<h3>Это страница Hello!</h3>
-    {% for i in latest %}
-    	{{ i.name }}<br>
-    {% endfor %}
+    
     
 {% endblock %}    
           

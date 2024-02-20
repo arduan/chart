@@ -2,21 +2,24 @@ from datetime import datetime
 
 from django.db import models
 from django.db.models import Sum
+from django.urls.base import reverse
+
 
 GENDER_CHOICES = [
-    ('муж','муж'),
-    ('жен','жен'),
+    ('муж', 'муж'),
+    ('жен', 'жен'),
 ]
 
 STATUS_CHOICES = [
-    ('поступление','поступение'),
-    ('перевод','перевод'),
-     # Добавьте другие значения и метки, если нужно
+    ('поступление', 'поступение'),
+    ('перевод', 'перевод'),
+    # Добавьте другие значения и метки, если нужно
 ]
 
 
 class Chart(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False)
+    slug = models.SlugField(max_length=100, unique=True, db_index=True)
     age = models.DecimalField(max_digits=3, decimal_places=0, null=True, blank=True)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True, blank=True)
     date_in = models.DateTimeField(null=True, blank=True)
@@ -40,9 +43,8 @@ class Chart(models.Model):
         my_count = models.IntegerField(default=Chart.objects().aggregate(Sum('count'))['count'])
         return my_count
 
-
     def __str__(self):
         return self.name
 
-
-
+    def get_absolute_url(self):
+        return reverse('hello', kwargs={'slug': self.slug})

@@ -1,10 +1,12 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
-from my_chart.views import HomePageView, PatientPageView
+from my_chart.views import HomePageView, YourDetailView
+
+
 urlpatterns = [
     path("", HomePageView.as_view(), name="index"),
-    path("hello/", PatientPageView.as_view(), name="hello"),
+    path("hello/<slug:slug>", YourDetailView.as_view(), name="hello"),
 
 ]
 
